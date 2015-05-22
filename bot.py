@@ -73,7 +73,7 @@ def post_top_subm(subm, subr, gsub, template):
         print e
 
 def pop_comment(subm, subr, comment):
-    time = datetime.fromtimestamp(subm.created).strftime("%a %d-%m-%y")
+    date = datetime.fromtimestamp(subm.created).strftime("%a %d-%m-%y")
 
     # Only initialise the top comment variable if
     # there are comments on the submission.
@@ -89,7 +89,7 @@ def pop_comment(subm, subr, comment):
         # i.e. the variable that m is.
         # Also is able to run code within braces,
         # which is handy. :)
-        comment = comment.replace("{%s}" % m, eval(m))
+        comment = comment.replace("{%s}" % m, str(eval(m)))
 
     return comment
 
@@ -140,7 +140,7 @@ def main():
         # a crash anywhere before here we don't add an 'unifinished'
         # subreddit to the list.
         complete.append(str(subr))
-        with open("completed.txt", 'w') as f:
+        with open("complete.txt", 'w') as f:
             f.write("\n".join(complete))
         # Zzz...
         time.sleep(INTERVAL)

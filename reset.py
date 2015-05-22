@@ -23,16 +23,22 @@ def main():
     gsub = reddit.get_subreddit("thegreatsub")
     print "Success."
 
-    # Only need to use get_hot - it doesn't matter
-    # which order we get all the submissions in.
-    for subm in gsub.get_hot():
-        print "Deleting %s..." % subm.title,
-        if str(subm.author) == creds[0]:
-            subm.delete()
-            print "Done."
-        # Don't really need to sleep, but it helps
-        # keep things under control.
-        time.sleep(2)
+    while True:
+        # Only need to use get_top_from_all - it doesn't
+        # matter which order we get all the submissions in.
+        for subm in gsub.get_top_from_all(limit=100):
+            # Damn non-unicode chars >.>
+            try:
+                print "Deleting %s..." % subm.title,
+            except:
+                pass
+            if str(subm.author) == creds[0]:
+                subm.delete()
+                print "Done."
+            # Don't really need to sleep, but it helps
+            # keep things under control.
+            # time.sleep(2)
+        time.sleep(5)
     print "Finished clearing submissions."
 
 if __name__ == "__main__":

@@ -6,4 +6,4 @@ There was no top comment found on this submission.
 
 ***
 
-^([Original Post]({subm.short_link}) | [Bug?](http://www.reddit.com/message/compose/?to=Toofifty) | Bot created by [Toofifty](/u/Toofifty))
+[^(Original Post)]({subm.short_link}) ^| [^Source](https://github.com/Toofifty/the-great-sub) ^| [^Bug?](http://www.reddit.com/message/compose/?to=Toofifty) ^| ^(Bot created by Toofifty)
