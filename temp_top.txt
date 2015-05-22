@@ -1,0 +1,13 @@
+This submission to {subr} was originally posted by {subm.author}, on {time}
+
+It has {subm.ups} points.
+
+The top comment of the submission was:
+
+>{topc.body.replace("\n", "\n>")}
+
+The comment was posted by {topc.author} and has {topc.ups} points.
+
+***
+
+^([Original Post]({subm.short_link}) | [Bug?](http://www.reddit.com/message/compose/?to=Toofifty) | Bot created by [Toofifty](/u/Toofifty))
