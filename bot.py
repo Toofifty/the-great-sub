@@ -48,7 +48,7 @@ def post_top_subm(subm, subr, gsub, template):
     # So we truncate the submission title by the length
     # of the filler characters and the subreddit name.
     if len(title) > 300:
-        title = "%s... - /r/%s" % (subm.title[0:290 - len(subr)], subr)
+        title = "%s... - /r/%s" % (subm.title[0:290 - len(subr.title)], subr)
 
     print "> %s" % title
 
