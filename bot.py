@@ -89,7 +89,14 @@ def pop_comment(subm, subr, comment):
         # i.e. the variable that m is.
         # Also is able to run code within braces,
         # which is handy. :)
-        comment = comment.replace("{%s}" % m, str(eval(m)))
+        try:
+            comment = comment.replace("{%s}" % m, str(eval(m)))
+        # A string may contain non-ASCII characters meaning str()
+        # will raise a UnicodeEncodeError. Since eval(m) isn't always
+        # a string, we can't just flat out use .encode(), so we should
+        # only use it as a last resort.
+        except UnicodeEncodeError:
+            comment = comment.replace("{%s}" % m, eval(m).encode('utf-8'))
 
     return comment
 

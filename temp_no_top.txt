@@ -1,4 +1,4 @@
-This submission to {subr} was originally posted by {subm.author}, on {time}
+This submission to {subr.title} was originally posted by {subm.author.name}, on {time}
 
 It has {subm.ups} points.
 
