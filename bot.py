@@ -85,18 +85,33 @@ def pop_comment(subm, subr, comment):
     # Look for all matches in the template text.
     # 'm' will be set to the string inside the braces.
     for m in re.findall(pt, comment):
+        
         # Replaces {m} with the evaluation of m,
         # i.e. the variable that m is.
         # Also is able to run code within braces,
         # which is handy. :)
         try:
             comment = comment.replace("{%s}" % m, str(eval(m)))
+            
         # A string may contain non-ASCII characters meaning str()
         # will raise a UnicodeEncodeError. Since eval(m) isn't always
         # a string, we can't just flat out use .encode(), so we should
         # only use it as a last resort.
         except UnicodeEncodeError:
             comment = comment.replace("{%s}" % m, eval(m).encode('utf-8'))
+            
+        # We also need to account for deleted comments and posts.
+        # AttributeErrors _should_ only be caused by [deleted] users,
+        # but we check just in case.
+        except AttributeError as ae:
+            
+            if "name" in m:
+                # Will execute for subm.- and topc.author.name 
+                comment = comment.replace("{%s}" % m, "[deleted]")
+                
+            else:
+                # Propogate the error, instead of just muting it.
+                raise ae
 
     return comment
 
